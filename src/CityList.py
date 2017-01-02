@@ -1,0 +1,57 @@
+from . import Enums
+from .City import City
+
+#Initialize and store the list of all cities in Pandemic
+CityList = {
+    "San Francisco" : City("San Francisco", Enums.Color.Blue),
+    "Chicago" : City("Chicago", Enums.Color.Blue),
+    "Montreal" : City("Montreal", Enums.Color.Blue),
+    "New York" : City("New York", Enums.Color.Blue),
+    "Washington" : City("Washington", Enums.Color.Blue),
+    "Atlanta" : City("Atlanta", Enums.Color.Blue),
+    "London" : City("London", Enums.Color.Blue),
+    "Madrid" : City("Madrid", Enums.Color.Blue),
+    "Paris" : City("Paris", Enums.Color.Blue),
+    "Essen" : City("Essen", Enums.Color.Blue),
+    "Milan" : City("Milan", Enums.Color.Blue),
+    "St. Petersburg" : City("St. Petersburg", Enums.Color.Blue),
+
+    "Los Angeles" : City("Los Angeles", Enums.Color.Yellow),
+    "Mexico City" : City("Mexico City", Enums.Color.Yellow),
+    "Miami" : City("Miami", Enums.Color.Yellow),
+    "Bogota" : City("Bogota", Enums.Color.Yellow),
+    "Lima" : City("Lima", Enums.Color.Yellow),
+    "Santiago" : City("Santiago", Enums.Color.Yellow),
+    "Buenos Aires" : City("Buenos Aires", Enums.Color.Yellow),
+    "Sao Paulo" : City("Sao Paulo", Enums.Color.Yellow),
+    "Lagos" : City("Lagos", Enums.Color.Yellow),
+    "Khartoum" : City("Khartoum", Enums.Color.Yellow),
+    "Kinshasa" : City("Kinshasa", Enums.Color.Yellow),
+    "Johannesburg" : City("Johannesburg", Enums.Color.Yellow),
+
+    "Algiers" : City("Algiers", Enums.Color.Black),
+    "Cairo" : City("Cairo", Enums.Color.Black),
+    "Istanbul" : City("Istanbul", Enums.Color.Black),
+    "Moscow" : City("Moscow", Enums.Color.Black),
+    "Baghdad" : City("Baghdad", Enums.Color.Black),
+    "Riyadh" : City("Riyadh", Enums.Color.Black),
+    "Tehran" : City("Tehran", Enums.Color.Black),
+    "Karachi" : City("Karachi", Enums.Color.Black),
+    "Delhi" : City("Delhi", Enums.Color.Black),
+    "Mumbai" : City("Mumbai", Enums.Color.Black),
+    "Chennai" : City("Chennai", Enums.Color.Black),
+    "Kolkata" : City("Kolkata", Enums.Color.Black),
+
+    "Bangkok" : City("Bangkok", Enums.Color.Red),
+    "Jakarta" : City("Jakarta", Enums.Color.Red),
+    "Ho Chi Minh City" : City("Ho Chi Minh City", Enums.Color.Red),
+    "Sydney" : City("Sydney", Enums.Color.Red),
+    "Manila" : City("Manila", Enums.Color.Red),
+    "Taipei" : City("Taipei", Enums.Color.Red),
+    "Hong Kong" : City("Hong Kong", Enums.Color.Red),
+    "Sanghai" : City("Sanghai", Enums.Color.Red),
+    "Beijing" : City("Beijing", Enums.Color.Red),
+    "Seoul" : City("Seoul", Enums.Color.Red),
+    "Tokyo" : City("Tokyo", Enums.Color.Red),
+    "Osaka" : City("Osaka", Enums.Color.Red)
+}
