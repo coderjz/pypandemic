@@ -28,6 +28,14 @@ class TestAllCitiesAreInConnection(unittest.TestCase):
         for key in CityList:
             self.assertTrue(key in ConnectionList)
 
+
+#No city should connect to itself
+class TestNoCityConnectsToSelf(unittest.TestCase):
+    def runTest(self):
+        for key in CityList:
+            for value in ConnectionList[key]:
+                self.assertNotEqual(key, value)
+
 #For all connections if from city a to city b connects,
 #Then from city b to city a should also connect
 class TestAllConnectionsBidirectional(unittest.TestCase):
