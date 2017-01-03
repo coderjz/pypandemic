@@ -49,7 +49,7 @@ CityList = {
     "Manila" : City("Manila", Enums.Color.Red),
     "Taipei" : City("Taipei", Enums.Color.Red),
     "Hong Kong" : City("Hong Kong", Enums.Color.Red),
-    "Sanghai" : City("Sanghai", Enums.Color.Red),
+    "Shanghai" : City("Shanghai", Enums.Color.Red),
     "Beijing" : City("Beijing", Enums.Color.Red),
     "Seoul" : City("Seoul", Enums.Color.Red),
     "Tokyo" : City("Tokyo", Enums.Color.Red),
