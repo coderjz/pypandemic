@@ -1,7 +1,7 @@
 #Initialize all connections into a dictionary that maps the source city to a list of all destinations
 ConnectionList = {
     "Montreal" : ["Chicago", "New York", "Washington"],
-    "Chicago" : ["Atlanta", "Montreal", "San Francisco", "Los Angeles"],
+    "Chicago" : ["Atlanta", "Montreal", "San Francisco", "Los Angeles", "Mexico City"],
     "San Francisco" : ["Los Angeles", "Chicago", "Tokyo", "Manila"],
     "New York" : ["Montreal", "Washington", "London", "Madrid"],
     "Washington" : ["New York", "Atlanta", "Miami", "Montreal"],
@@ -17,7 +17,7 @@ ConnectionList = {
     "Mexico City" : ["Los Angeles", "Chicago", "Miami", "Bogota", "Lima"],
     "Miami" : ["Atlanta", "Washington", "Mexico City", "Bogota"],
     "Bogota" : ["Miami", "Mexico City", "Lima", "Buenos Aires", "Sao Paulo"],
-    "Lima" : ["Mexico City", "Miami", "Santiago"],
+    "Lima" : ["Mexico City", "Santiago", "Bogota"],
     "Santiago" : ["Lima"],
     "Buenos Aires" : ["Bogota", "Sao Paulo"],
     "Sao Paulo" : ["Buenos Aires", "Bogota", "Madrid", "Lagos"],

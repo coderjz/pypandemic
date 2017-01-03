@@ -40,5 +40,14 @@ class TestNoCityConnectsToSelf(unittest.TestCase):
 #Then from city b to city a should also connect
 class TestAllConnectionsBidirectional(unittest.TestCase):
     def runTest(self):
-        #TODO this test.
-        self.assertTrue(False)
+        #Build all connections
+        allConnections = []
+        for key in ConnectionList:
+            for value in ConnectionList[key]:
+                allConnections.append((key, value))
+                
+        for connection in allConnections:
+            if (connection[1], connection[0]) not in allConnections:
+                self.assertTrue(False, "Could not find " + connection[1] + ":" + connection[0] + " in connection list") 
+
+        self.assertTrue(True)
