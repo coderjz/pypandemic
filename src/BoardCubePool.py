@@ -1,7 +1,7 @@
 from . import Enums
 
 #Stores the amount of cubes available for the game for each color
-class CubePool:
+class BoardCubePool:
     MAX_NUM_CUBES = 24
 
     numRedCubes = MAX_NUM_CUBES

@@ -1,12 +1,12 @@
 import unittest
 import env
 
-from src.CubePool import CubePool
+from src.BoardCubePool import BoardCubePool
 from src import Enums
 
 #Unit testing framework will automatically consider any method starting with test as
 #We use this and put all unit tests in a single class to use the setup feature
-class TestCubePool(unittest.TestCase):
+class TestBoardCubePool(unittest.TestCase):
     wasCallbackCalled = False
     cubePool = None
 
@@ -14,7 +14,7 @@ class TestCubePool(unittest.TestCase):
     #Also we initiaze cube pool here to get reference to this object's callback function 
     def setUp(self):
         self.wasCallbackCalled = False
-        self.cubePool = CubePool(self.invokeCallback)
+        self.cubePool = BoardCubePool(self.invokeCallback)
         
     #Set flag to indicate we called the callback
     def invokeCallback(self):
