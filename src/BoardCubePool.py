@@ -4,9 +4,6 @@ from . import Enums
 class BoardCubePool:
     MAX_NUM_CUBES = 24
 
-    #Function to call when cubes for any color are not available to be taken
-    cubesUnavailableCallback = None
-
     def __init__(self, callback):
         self.cubesUnavailableCallback = callback
         self.numCubes = {
