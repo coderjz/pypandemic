@@ -15,10 +15,10 @@ class BoardCubePool:
 
     def Take(self, numToTake, color):
         if numToTake <= 0:
-            raise ValueError("Invalid parameter numToTake passed, value = " + numToTake)
+            raise ValueError("Invalid parameter numToTake passed, value = " + str(numToTake))
 
         if color not in self.numCubes:
-            raise ValueError("Invalid parameter passed for color, value = " + color)
+            raise ValueError("Invalid parameter passed for color, value = " + str(color))
 
         if self.numCubes[color] >= numToTake:
             self.numCubes[color] -= numToTake
@@ -30,10 +30,10 @@ class BoardCubePool:
 
     def Return(self, numToReturn, color):
         if numToReturn <= 0:
-            raise ValueError("Invalid parameter numToReturn , value = " + numToReturn)
+            raise ValueError("Invalid parameter numToReturn , value = " + str(numToReturn))
 
         if color not in self.numCubes:
-            raise ValueError("Invalid parameter passed for color, value = " + color)
+            raise ValueError("Invalid parameter passed for color, value = " + str(color))
 
         self.numCubes[color] += numToReturn
         if self.numCubes[color] > self.MAX_NUM_CUBES:
