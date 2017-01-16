@@ -19,55 +19,55 @@ class TestCityCubes(unittest.TestCase):
         self.wasCallbackCalled = True
 
     def testNoCallbackCallOnce(self):
-        self.cityCubes.Add(1, Enums.Color.Red)
+        self.cityCubes.add(1, Enums.Color.Red)
         self.assertFalse(self.wasCallbackCalled)
 
 
     def testCallbackAdd4(self):
-        self.cityCubes.Add(4, Enums.Color.Red)
+        self.cityCubes.add(4, Enums.Color.Red)
         self.assertTrue(self.wasCallbackCalled)
 
     def testNoCallbackAdd3Times(self):
         for i in range(3):
-            self.cityCubes.Add(1,Enums.Color.Yellow)
+            self.cityCubes.add(1,Enums.Color.Yellow)
         self.assertFalse(self.wasCallbackCalled)
 
 
     def testCallbackAdd4Times(self):
         for i in range(4):
-            self.cityCubes.Add(1,Enums.Color.Black)
+            self.cityCubes.add(1,Enums.Color.Black)
         self.assertTrue(self.wasCallbackCalled)
 
     def testNoCallbackAddEach1Time(self):
-        self.cityCubes.Add(1, Enums.Color.Blue)
-        self.cityCubes.Add(1, Enums.Color.Black)
-        self.cityCubes.Add(1, Enums.Color.Red)
+        self.cityCubes.add(1, Enums.Color.Blue)
+        self.cityCubes.add(1, Enums.Color.Black)
+        self.cityCubes.add(1, Enums.Color.Red)
 
         self.assertFalse(self.wasCallbackCalled)
 
 
 
-    def testNoCallbackAddAndRemove(self):
+    def testNoCallbackAddAndremove(self):
         for i in range(2):
-            self.cityCubes.Add(1, Enums.Color.Yellow)
+            self.cityCubes.add(1, Enums.Color.Yellow)
 
-        self.cityCubes.Remove(1, Enums.Color.Yellow)
+        self.cityCubes.remove(1, Enums.Color.Yellow)
 
         for i in range(2):
-            self.cityCubes.Add(1, Enums.Color.Red)
+            self.cityCubes.add(1, Enums.Color.Red)
 
         self.assertFalse(self.wasCallbackCalled)
 
 
     def testCallbackAddAndRemoveDifferentCube(self):
         for i in range(2):
-            self.cityCubes.Add(1, Enums.Color.Yellow)
+            self.cityCubes.add(1, Enums.Color.Yellow)
 
-        self.cityCubes.Add(1, Enums.Color.Red)
-        self.cityCubes.Remove(1, Enums.Color.Red)
+        self.cityCubes.add(1, Enums.Color.Red)
+        self.cityCubes.remove(1, Enums.Color.Red)
 
         for i in range(2):
-            self.cityCubes.Add(1, Enums.Color.Yellow)
+            self.cityCubes.add(1, Enums.Color.Yellow)
 
         self.assertTrue(self.wasCallbackCalled)
 
@@ -75,7 +75,7 @@ class TestCityCubes(unittest.TestCase):
     def testExceptionsThrown(self):
         raised = False
         try:
-            self.cityCubes.Add(1, None)
+            self.cityCubes.add(1, None)
         except:
             raised = True
 
@@ -84,14 +84,14 @@ class TestCityCubes(unittest.TestCase):
 
         raised = False
         try:
-            self.cityCubes.Add(0, Enums.Colors.Blue)
+            self.cityCubes.add(0, Enums.Colors.Blue)
         except:
             raised = True
         self.assertTrue(raised, "Exception was not raised")
 
         raised = False
         try:
-            self.cityCubes.Remove(1, None)
+            self.cityCubes.remove(1, None)
         except:
             raised = True
 
@@ -100,7 +100,7 @@ class TestCityCubes(unittest.TestCase):
 
         raised = False
         try:
-            self.cityCubes.Remove(0, Enums.Colors.Blue)
+            self.cityCubes.remove(0, Enums.Colors.Blue)
         except:
             raised = True
         self.assertTrue(raised, "Exception was not raised")
@@ -109,7 +109,7 @@ class TestCityCubes(unittest.TestCase):
     def testCannotRemoveCubesNotAddn(self):
         raised = False
         try:
-            self.cityCubes.Remove(1, Enums.Colors.Blue)
+            self.cityCubes.remove(1, Enums.Colors.Blue)
         except:
             raised = True
         self.assertTrue(raised, "Exception was not raised")
@@ -117,8 +117,8 @@ class TestCityCubes(unittest.TestCase):
 
         raised = False
         try:
-            self.cityCubes.Add(3, Enums.Colors.Red)
-            self.cityCubes.Remove(4, Enums.Colors.Red)
+            self.cityCubes.add(3, Enums.Colors.Red)
+            self.cityCubes.remove(4, Enums.Colors.Red)
         except:
             raised = True
         self.assertTrue(raised, "Exception was not raised")

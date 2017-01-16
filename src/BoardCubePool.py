@@ -13,7 +13,7 @@ class BoardCubePool:
             Enums.Color.Black: self.MAX_NUM_CUBES
         }
 
-    def Take(self, numToTake, color):
+    def takeCube(self, numToTake, color):
         if numToTake <= 0:
             raise ValueError("Invalid parameter numToTake passed, value = " + str(numToTake))
 
@@ -28,7 +28,7 @@ class BoardCubePool:
                 self.cubesUnavailableCallback()
 
 
-    def Return(self, numToReturn, color):
+    def returnCube(self, numToReturn, color):
         if numToReturn <= 0:
             raise ValueError("Invalid parameter numToReturn , value = " + str(numToReturn))
 

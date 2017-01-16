@@ -6,8 +6,8 @@ class City:
         self.cubes = CityCubes(boardCubePool, outbreakCallback)
 
 
-    def AddCube(self, numToAdd, color):
-        self.cityCubes.Add(numToAdd, color)
+    def addCube(self, numToAdd, color):
+        self.cityCubes.add(numToAdd, color)
 
-    def RemoveCube(self, numToRemove, color):
-        self.cityCubes.Remove(numToRemove, color)
+    def removeCube(self, numToRemove, color):
+        self.cityCubes.remove(numToRemove, color)

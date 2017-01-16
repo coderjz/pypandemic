@@ -62,3 +62,6 @@ class CityList:
     def __iter__(self):
         return iter(self.cities)
 
+    def __getitem__(self, key):
+        return self.cities[key]
+

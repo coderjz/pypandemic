@@ -17,7 +17,7 @@ class CityCubes:
     def getTotalCubes(self):
         return sum(self.numCubes.values())
 
-    def Add(self, numToAdd, color):
+    def add(self, numToAdd, color):
         if numToAdd <= 0:
             raise ValueError("Invalid parameter numToAdd passed, value = " + str(numToAdd))
 
@@ -31,7 +31,7 @@ class CityCubes:
             raiseTooMany = True
         
         if numToAdd > 0:
-            self.boardCubePool.Take(numToAdd, color)
+            self.boardCubePool.takeCube(numToAdd, color)
             self.numCubes[color] += numToAdd
 
         if raiseTooMany and self.cubeTooManyCallback is not None:
@@ -39,7 +39,7 @@ class CityCubes:
 
 
 
-    def Remove(self, numToRemove, color):
+    def remove(self, numToRemove, color):
         if numToRemove <= 0:
             raise ValueError("Invalid parameter numToRemove , value = " + numToRemove)
 
@@ -49,5 +49,5 @@ class CityCubes:
         if self.numCubes[color] < numToRemove:
             raise ValueError("Attempt to remove " + color + " cubes, more than the number that exist on the city")
 
-        self.boardCubePool.Return(numToRemove, color)
+        self.boardCubePool.returnCube(numToRemove, color)
         self.numCubes[color] -= numToRemove
