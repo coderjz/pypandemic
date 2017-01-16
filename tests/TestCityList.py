@@ -3,10 +3,15 @@ import env
 
 from src.CityList import CityList as CityList
 
-class TestLength(unittest.TestCase):
-    def runTest(self):
-        self.assertEqual(len(CityList), 48)
+class TestCityList(unittest.TestCase):
+    def setUp(self):
+        self.cityList = CityList(None, None)
 
-class TestContainsLosAngeles(unittest.TestCase):
-    def runTest(self):
-        self.assertTrue("Los Angeles" in CityList)
+    def testLength(self):
+        numCities = 0
+        for city in self.cityList:
+            numCities += 1
+        self.assertEqual(numCities, 48)
+
+    def testContainsLosAngeles(self):
+        self.assertTrue("Los Angeles" in self.cityList)

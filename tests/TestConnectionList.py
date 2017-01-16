@@ -3,43 +3,42 @@ import env
 
 from src.ConnectionList import ConnectionList 
 from src.CityList import CityList 
+from src.BoardCubePool import BoardCubePool
 
-#Check one city length as sanity check
-class TestNumConnectionsMontreal(unittest.TestCase):
-    def runTest(self):
+class TestConnectionList(unittest.TestCase):
+    def setUp(self):
+        self.cityList = CityList(None, None)
+
+    #Check one city length as sanity check
+    def testNumConnectionsMontreal(self):
         self.assertEqual(len(ConnectionList["Montreal"]), 3)
 
-#Check each key of connection is a valid city entry, catch typos
-class TestAllKeysAreCities(unittest.TestCase):
-    def runTest(self):
+    #Check each key of connection is a valid city entry, catch typos
+    def testAllKeysAreCities(self):
         for key in ConnectionList:
-            self.assertTrue(key in CityList)
+            self.assertTrue(key in self.cityList)
 
-#Check each item in array value of connection is a valid city entry, catch typos
-class TestAllValuesAreCities(unittest.TestCase):
-    def runTest(self):
+    #Check each item in array value of connection is a valid city entry, catch typos
+    def testAllValuesAreCities(self):
         for key in ConnectionList:
             for value in ConnectionList[key]:
-                self.assertTrue(value in CityList, "City " + value + " not in City List")
+                self.assertTrue(value in self.cityList, "City " + value + " not in City List")
 
-#Every city must be connected at least once
-class TestAllCitiesAreInConnection(unittest.TestCase):
-    def runTest(self):
-        for key in CityList:
+    #Every city must be connected at least once
+    def testAllCitiesAreInConnection(self):
+        for key in self.cityList:
             self.assertTrue(key in ConnectionList)
 
 
-#No city should connect to itself
-class TestNoCityConnectsToSelf(unittest.TestCase):
-    def runTest(self):
-        for key in CityList:
+    #No city should connect to itself
+    def testNoCityConnectsToSelf(self):
+        for key in self.cityList:
             for value in ConnectionList[key]:
                 self.assertNotEqual(key, value)
 
-#For all connections if from city a to city b connects,
-#Then from city b to city a should also connect
-class TestAllConnectionsBidirectional(unittest.TestCase):
-    def runTest(self):
+    #For all connections if from city a to city b connects,
+    #Then from city b to city a should also connect
+    def testAllConnectionsBidirectional(self):
         #Build all connections
         allConnections = []
         for key in ConnectionList:

@@ -1,13 +1,13 @@
+from .CityCubes import CityCubes
 class City:
-    name = ""
-    color = 0
-    numCubes = 0
-
-    def __init__(self, name, color):
+    def __init__(self, name, color, boardCubePool, outbreakCallback):
         self.name = name 
         self.color = color
-        self.numCubes = 0
+        self.cubes = CityCubes(boardCubePool, outbreakCallback)
 
 
-    #TODO: Make numCubes for each color, add a function addCube(color), removeCube(color) and function for total number of cubes
-    #We will need to store number of cubes for each color for when we put in logic for ending the game if all colors of a cube are removed.
+    def AddCube(self, numToAdd, color):
+        self.cityCubes.Add(numToAdd, color)
+
+    def RemoveCube(self, numToRemove, color):
+        self.cityCubes.Remove(numToRemove, color)

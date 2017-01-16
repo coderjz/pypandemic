@@ -7,8 +7,6 @@ from src import Enums
 #Unit testing framework will automatically consider any method starting with test as
 #We use this and put all unit tests in a single class to use the setup feature
 class TestBoardCubePool(unittest.TestCase):
-    wasCallbackCalled = False
-    boardCubePool = None
 
     #Between each test we want to reset the callback to having not been called
     #Also we initiaze cube pool here to get reference to this object's callback function 

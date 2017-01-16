@@ -5,23 +5,18 @@ from src import Enums
 from src.CityCubes import CityCubes
 from src.BoardCubePool import BoardCubePool
 
-class TestLength(unittest.TestCase):
-
-    boardCubePool = BoardCubePool(None)
-    wasCallbackCalled = False
-    cityCubes = None
+class TestCityCubes(unittest.TestCase):
 
     #Between each test we want to reset the callback to having not been called
     #Also we initiaze cube cubes here to get reference to this object's callback function 
     def setUp(self):
+        self.boardCubePool = BoardCubePool(None)
         self.wasCallbackCalled = False
         self.cityCubes = CityCubes(self.boardCubePool, self.invokeCallback)
         
     #Set flag to indicate we called the callback
     def invokeCallback(self):
         self.wasCallbackCalled = True
-
-
 
     def testNoCallbackCallOnce(self):
         self.cityCubes.Add(1, Enums.Color.Red)
