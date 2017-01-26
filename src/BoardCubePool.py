@@ -1,11 +1,15 @@
 from . import Enums
+from .MediatorResource import MediatorResource
+from .Event import CubesUnavailableEvent
 
 #Stores the amount of cubes available for the game for each color
 class BoardCubePool:
     MAX_NUM_CUBES = 24
 
-    def __init__(self, callback):
-        self.cubesUnavailableCallback = callback
+    def __init__(self):
+        self.mediator = MediatorResource.Mediator
+        self.cubesUnavailable = CubesUnavailableEvent()
+        
         self.numCubes = {
             Enums.Color.Blue: self.MAX_NUM_CUBES,
             Enums.Color.Red: self.MAX_NUM_CUBES,
@@ -24,8 +28,7 @@ class BoardCubePool:
             self.numCubes[color] -= numToTake
         else:
             self.numCubes[color] = 0
-            if self.cubesUnavailableCallback is not None:
-                self.cubesUnavailableCallback()
+            self.mediator.dispatch(self.cubesUnavailable)
 
 
     def returnCube(self, numToReturn, color):

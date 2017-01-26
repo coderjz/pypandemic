@@ -3,6 +3,7 @@ import env
 
 from src.BoardCubePool import BoardCubePool
 from src import Enums
+from src.MediatorResource import MediatorResource
 
 #Unit testing framework will automatically consider any method starting with test as
 #We use this and put all unit tests in a single class to use the setup feature
@@ -11,32 +12,34 @@ class TestBoardCubePool(unittest.TestCase):
     #Between each test we want to reset the callback to having not been called
     #Also we initiaze cube pool here to get reference to this object's callback function 
     def setUp(self):
-        self.wasCallbackCalled = False
-        self.boardCubePool = BoardCubePool(self.invokeCallback)
+        self.wasEventFired = False
+        self.boardCubePool = BoardCubePool()
+        self.mediator = MediatorResource.Mediator
+        self.mediator.add_listener('cubes_unavaiable', self.handleEvent)
         
     #Set flag to indicate we called the callback
-    def invokeCallback(self):
-        self.wasCallbackCalled = True
+    def handleEvent(self, event):
+        self.wasEventFired = True
 
     def testNoCallbackCallOnce(self):
         self.boardCubePool.takeCube(1, Enums.Color.Red)
-        self.assertFalse(self.wasCallbackCalled)
+        self.assertFalse(self.wasEventFired)
         
 
     def testCallbackTake25(self):
         self.boardCubePool.takeCube(25, Enums.Color.Red)
-        self.assertTrue(self.wasCallbackCalled)
+        self.assertTrue(self.wasEventFired)
 
     def testNoCallbackTake24Times(self):
         for i in range(24):
             self.boardCubePool.takeCube(1,Enums.Color.Yellow)
-        self.assertFalse(self.wasCallbackCalled)
+        self.assertFalse(self.wasEventFired)
 
 
     def testCallbackTake25Times(self):
         for i in range(25):
             self.boardCubePool.takeCube(1,Enums.Color.Black)
-        self.assertTrue(self.wasCallbackCalled)
+        self.assertTrue(self.wasEventFired)
 
     def testNoCallbackTakeEach10Times(self):
         for i in range(10):
@@ -45,7 +48,7 @@ class TestBoardCubePool(unittest.TestCase):
             self.boardCubePool.takeCube(1, Enums.Color.Red)
             self.boardCubePool.takeCube(1, Enums.Color.Yellow)
 
-        self.assertFalse(self.wasCallbackCalled)
+        self.assertFalse(self.wasEventFired)
 
 
 
@@ -59,7 +62,7 @@ class TestBoardCubePool(unittest.TestCase):
         for i in range(15):
             self.boardCubePool.takeCube(1, Enums.Color.Blue)
 
-        self.assertTrue(self.wasCallbackCalled)
+        self.assertTrue(self.wasEventFired)
 
 
     def testNoCallbackTakeAndreturnCube(self):
@@ -71,7 +74,7 @@ class TestBoardCubePool(unittest.TestCase):
         for i in range(15):
             self.boardCubePool.takeCube(1, Enums.Color.Yellow)
 
-        self.assertFalse(self.wasCallbackCalled)
+        self.assertFalse(self.wasEventFired)
 
 
     def testCallbackTakeAndReturnDifferentCube(self):
@@ -84,7 +87,7 @@ class TestBoardCubePool(unittest.TestCase):
         for i in range(15):
             self.boardCubePool.takeCube(1, Enums.Color.Yellow)
 
-        self.assertTrue(self.wasCallbackCalled)
+        self.assertTrue(self.wasEventFired)
 
 
     def testExceptionsThrown(self):

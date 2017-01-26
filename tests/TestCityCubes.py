@@ -4,46 +4,49 @@ import env
 from src import Enums
 from src.CityCubes import CityCubes
 from src.BoardCubePool import BoardCubePool
+from src.MediatorResource import MediatorResource
 
 class TestCityCubes(unittest.TestCase):
 
     #Between each test we want to reset the callback to having not been called
     #Also we initiaze cube cubes here to get reference to this object's callback function 
     def setUp(self):
-        self.boardCubePool = BoardCubePool(None)
-        self.wasCallbackCalled = False
-        self.cityCubes = CityCubes(self.boardCubePool, self.invokeCallback)
+        self.boardCubePool = BoardCubePool()
+        self.wasEventFired = False
+        self.cityCubes = CityCubes(self.boardCubePool, None)
+        self.mediator = MediatorResource.Mediator
+        self.mediator.add_listener('cubes_too_many', self.handleEvent)
         
     #Set flag to indicate we called the callback
-    def invokeCallback(self):
-        self.wasCallbackCalled = True
+    def handleEvent(self, event):
+        self.wasEventFired = True
 
     def testNoCallbackCallOnce(self):
         self.cityCubes.add(1, Enums.Color.Red)
-        self.assertFalse(self.wasCallbackCalled)
+        self.assertFalse(self.wasEventFired)
 
 
     def testCallbackAdd4(self):
         self.cityCubes.add(4, Enums.Color.Red)
-        self.assertTrue(self.wasCallbackCalled)
+        self.assertTrue(self.wasEventFired)
 
     def testNoCallbackAdd3Times(self):
         for i in range(3):
             self.cityCubes.add(1,Enums.Color.Yellow)
-        self.assertFalse(self.wasCallbackCalled)
+        self.assertFalse(self.wasEventFired)
 
 
     def testCallbackAdd4Times(self):
         for i in range(4):
             self.cityCubes.add(1,Enums.Color.Black)
-        self.assertTrue(self.wasCallbackCalled)
+        self.assertTrue(self.wasEventFired)
 
     def testNoCallbackAddEach1Time(self):
         self.cityCubes.add(1, Enums.Color.Blue)
         self.cityCubes.add(1, Enums.Color.Black)
         self.cityCubes.add(1, Enums.Color.Red)
 
-        self.assertFalse(self.wasCallbackCalled)
+        self.assertFalse(self.wasEventFired)
 
 
 
@@ -56,7 +59,7 @@ class TestCityCubes(unittest.TestCase):
         for i in range(2):
             self.cityCubes.add(1, Enums.Color.Red)
 
-        self.assertFalse(self.wasCallbackCalled)
+        self.assertFalse(self.wasEventFired)
 
 
     def testCallbackAddAndRemoveDifferentCube(self):
@@ -69,7 +72,7 @@ class TestCityCubes(unittest.TestCase):
         for i in range(2):
             self.cityCubes.add(1, Enums.Color.Yellow)
 
-        self.assertTrue(self.wasCallbackCalled)
+        self.assertTrue(self.wasEventFired)
 
 
     def testExceptionsThrown(self):

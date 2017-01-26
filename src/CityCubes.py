@@ -1,11 +1,15 @@
 from . import Enums
+from .MediatorResource import MediatorResource
+from .Event import CubesTooManyEvent
 
 #Stores the amount of cubes on the city
 class CityCubes: 
     MAX_NUM_CUBES = 3
 
-    def __init__(self, boardCubePool, callback):
-        self.cubeTooManyCallback = callback
+    def __init__(self, boardCubePool, city):
+        self.mediator = MediatorResource.Mediator
+        self.cubesTooMany = CubesTooManyEvent()
+        self.cubesTooMany.city = city #When we fire the event, we need to know which city is associated
         self.boardCubePool = boardCubePool
         self.numCubes = {
             Enums.Color.Blue: 0,
@@ -34,8 +38,8 @@ class CityCubes:
             self.boardCubePool.takeCube(numToAdd, color)
             self.numCubes[color] += numToAdd
 
-        if raiseTooMany and self.cubeTooManyCallback is not None:
-            self.cubeTooManyCallback()
+        if raiseTooMany:
+            self.mediator.dispatch(self.cubesTooMany)
 
 
 

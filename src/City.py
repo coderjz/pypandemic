@@ -1,9 +1,9 @@
 from .CityCubes import CityCubes
 class City:
-    def __init__(self, name, color, boardCubePool, outbreakCallback):
+    def __init__(self, name, color, boardCubePool):
         self.name = name 
         self.color = color
-        self.cubes = CityCubes(boardCubePool, outbreakCallback)
+        self.cubes = CityCubes(boardCubePool, self)
 
 
     def addCube(self, numToAdd, color):

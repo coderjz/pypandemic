@@ -3,11 +3,10 @@ import env
 
 from src.ConnectionList import ConnectionList 
 from src.CityList import CityList 
-from src.BoardCubePool import BoardCubePool
 
 class TestConnectionList(unittest.TestCase):
     def setUp(self):
-        self.cityList = CityList(None, None)
+        self.cityList = CityList(None)
 
     #Check one city length as sanity check
     def testNumConnectionsMontreal(self):

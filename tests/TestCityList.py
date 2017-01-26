@@ -5,7 +5,7 @@ from src.CityList import CityList as CityList
 
 class TestCityList(unittest.TestCase):
     def setUp(self):
-        self.cityList = CityList(None, None)
+        self.cityList = CityList(None)
 
     def testLength(self):
         numCities = 0
